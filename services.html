@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Orthodontic Consulting Services - Remote case planning, surgical ortho, digital workflow by Dr. Jaspreet Singh">
+    <title>Services & Pricing | Dr. Jaspreet Singh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Services Page Specific Styles */
+        .services-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #065f5f 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+
+        .services-hero h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .services-hero p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Category Tabs */
+        .category-nav {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--gray-50);
+            border-radius: 12px;
+        }
+
+        .category-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background: transparent;
+            color: var(--gray-600);
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover {
+            background: var(--gray-200);
+        }
+
+        .category-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(13, 115, 119, 0.15);
+        }
+
+        .service-card.featured {
+            border: 2px solid var(--primary);
+        }
+
+        .service-card.featured::before {
+            content: "POPULAR";
+            position: absolute;
+            top: 12px;
+            right: -30px;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 2rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+        }
+
+        .service-price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-price span {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            font-weight: 400;
+        }
+
+        .service-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        .service-description {
+            color: var(--gray-600);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .service-includes {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem;
+        }
+
+        .service-includes li {
+            padding: 0.375rem 0;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .service-includes li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .service-cta {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 0.875rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .service-cta:hover {
+            background: #0a8a8a;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 4rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .category-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .category-badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Add-ons Section */
+        .addons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .addon-card {
+            background: var(--gray-50);
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .addon-card h4 {
+            font-size: 0.9375rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .addon-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Terms Section */
+        .terms-section {
+            background: linear-gradient(135deg, var(--gray-50), var(--white));
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            margin-top: 3rem;
+        }
+
+        .terms-section h3 {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .term-item {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .term-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(13, 115, 119, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .term-item p {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #065f5f 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-banner h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn-white:hover {
+            background: var(--gray-100);
+            transform: translateY(-2px);
+        }
+
+        .cta-btn-outline {
+            background: transparent;
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .services-hero {
+                padding: 5rem 0 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-nav {
+                flex-direction: column;
+            }
+
+            .category-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">JS</div><span>Dr. Jaspreet Singh</span>
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="cases.html" class="nav-link">Cases</a></li>
+                    <li><a href="services.html" class="nav-link active">Services</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav">
+        <ul class="mobile-nav-list">
+            <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+            <li><a href="cases.html" class="mobile-nav-link">Cases</a></li>
+            <li><a href="services.html" class="mobile-nav-link">Services</a></li>
+            <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="services-hero">
+        <div class="container">
+            <h1>Orthodontic Consulting <span style="opacity:0.9;">Services</span></h1>
+            <p>Remote case planning, surgical ortho support, and digital workflow services for clinicians. Expert
+                guidance when you need it most.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+            <!-- VISITING CONSULTANT SERVICE -->
+            <div class="category-section"
+                style="background: linear-gradient(135deg, #f0fdf9 0%, #ecfdf5 100%); padding: 2.5rem; border-radius: 20px; margin-bottom: 4rem; border: 2px solid var(--primary);">
+                <div style="text-align:center; margin-bottom: 2rem;">
+                    <span
+                        style="background: var(--primary); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">🏥
+                        CLINIC PARTNERSHIP</span>
+                    <h2 style="font-size: 2rem; margin: 1rem 0 0.5rem;">Visiting Orthodontic Consultant</h2>
+                    <p style="color: var(--gray-600); max-width: 700px; margin: 0 auto; font-size: 1rem;">Premium
+                        orthodontic consulting for clinics that want predictable outcomes, controlled failures, and
+                        faster case resolution—without building a full-time orthodontic department.</p>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Card 1: Core Clinical Delivery -->
+                    <div class="service-card featured">
+                        <div class="service-icon">🦷</div>
+                        <h3>On-site Orthodontic Treatment Execution</h3>
+                        <p class="service-description" style="font-weight:500; color: var(--primary);">Best for: Clinics
+                            that want reliable ortho delivery under their brand</p>
+                        <ul class="service-includes">
+                            <li>New case evaluation + diagnosis + records checklist</li>
+                            <li>Fixed appliance and functional appliance planning + execution</li>
+                            <li>Appointment-wise mechanics roadmap and finishing plan</li>
+                            <li>Standardized patient communication for acceptance and compliance</li>
+                        </ul>
+                        <div
+                            style="background: var(--gray-50); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <strong style="color: var(--gray-700);">Clinic gets:</strong>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.875rem; color: var(--gray-600);">✓ Consistent
+                                results and documentation<br>✓ Reduced chairside confusion and rework<br>✓ A repeatable
+                                ortho workflow</p>
+                        </div>
+                        <a href="contact.html" class="service-cta">Request Clinic Partnership Pricing</a>
+                    </div>
+
+                    <!-- Card 2: Stuck Case Rescue -->
+                    <div class="service-card">
+                        <div class="service-icon">🚨</div>
+                        <h3>Stuck / Failed Ortho Case Rescue</h3>
+                        <p class="service-description" style="font-weight:500; color: var(--primary);">Best for: Cases
+                            not progressing, repeated breakages, poor tracking, anchorage loss</p>
+                        <ul class="service-includes">
+                            <li>Root-cause diagnosis (why it's stuck)</li>
+                            <li>8–12 week corrective plan</li>
+                            <li>Priority checklist: what to fix first vs later</li>
+                            <li>Risk control: what NOT to do (prevents bigger failures)</li>
+                        </ul>
+                        <div class="service-meta">
+                            <span>📋 On-site discussion + written plan</span>
+                        </div>
+                        <a href="contact.html" class="service-cta">Send a Stuck Case for Review</a>
+                    </div>
+
+                    <!-- Card 3: Surgical-Ortho Coordination -->
+                    <div class="service-card">
+                        <div class="service-icon">🏥</div>
+                        <h3>Surgical Orthodontics Planning & Coordination</h3>
+                        <p class="service-description" style="font-weight:500; color: var(--primary);">Best for:
+                            Skeletal Class II / Class III, asymmetry, complex vertical problems</p>
+                        <ul class="service-includes">
+                            <li>Ortho-surgery sequencing (decompensation → surgery goals → finishing)</li>
+                            <li>Surgical movement objectives in plain language</li>
+                            <li>Coordination support with OMFS</li>
+                            <li>Patient briefing points for consent and compliance</li>
+                        </ul>
+                        <p style="color:var(--primary); font-weight:600; font-size:0.875rem; margin-bottom: 1rem;">
+                            Add-on: 3D planning package (CBCT-based)</p>
+                        <a href="contact.html" class="service-cta">Book Surgical Planning Consult</a>
+                    </div>
+
+                    <!-- Card 4: Digital Planning Add-on -->
+                    <div class="service-card">
+                        <div class="service-icon">💻</div>
+                        <h3>Digital Planning & CBCT Workflow</h3>
+                        <p class="service-description" style="font-weight:500; color: var(--gray-600);">Add-on service
+                            for advanced visualization</p>
+                        <ul class="service-includes">
+                            <li>Segmentation + STL export</li>
+                            <li>Superimposition + color mapping (pre–post / asymmetry)</li>
+                            <li>3D visuals for explanation and consent</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Request Digital Planning Package</a>
+                    </div>
+                </div>
+
+                <!-- How It Works -->
+                <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 2px solid var(--gray-200);">
+                    <h3 style="text-align: center; margin-bottom: 1.5rem;">📋 How It Works</h3>
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="text-align: center; padding: 1.5rem;">
+                            <div
+                                style="width: 48px; height: 48px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; margin: 0 auto 1rem;">
+                                1</div>
+                            <h4 style="margin-bottom: 0.5rem;">Clinic Onboarding</h4>
+                            <p style="font-size: 0.875rem; color: var(--gray-600); margin: 0;">Pricing integrity +
+                                record protocol + workflow setup</p>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem;">
+                            <div
+                                style="width: 48px; height: 48px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; margin: 0 auto 1rem;">
+                                2</div>
+                            <h4 style="margin-bottom: 0.5rem;">Visit Schedule</h4>
+                            <p style="font-size: 0.875rem; color: var(--gray-600); margin: 0;">Fixed days + case start
+                                process + follow-up cadence</p>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem;">
+                            <div
+                                style="width: 48px; height: 48px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; margin: 0 auto 1rem;">
+                                3</div>
+                            <h4 style="margin-bottom: 0.5rem;">Reporting & Payments</h4>
+                            <p style="font-size: 0.875rem; color: var(--gray-600); margin: 0;">Monthly ledger +
+                                transparent payouts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Requirements & Boundaries -->
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                    <div
+                        style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--gray-200);">
+                        <h4 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">📦 What
+                            Clinics Must Provide</h4>
+                        <ul
+                            style="margin: 0; padding-left: 1.25rem; color: var(--gray-600); font-size: 0.9rem; line-height: 1.8;">
+                            <li>Chair, assistant support, sterilization, basic instruments</li>
+                            <li>Standard record set (photos + OPG + lateral ceph; CBCT if indicated)</li>
+                            <li>Transparent billing ledger for orthodontic collections</li>
+                        </ul>
+                    </div>
+                    <div
+                        style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--gray-200);">
+                        <h4 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">⚖️ Boundaries
+                        </h4>
+                        <ul
+                            style="margin: 0; padding-left: 1.25rem; color: var(--gray-600); font-size: 0.9rem; line-height: 1.8;">
+                            <li>Clinic discounts ortho fees only with my approval</li>
+                            <li>Emergency handling by clinic allowed if unavailable, but mechanics changes require
+                                confirmation</li>
+                            <li>Premium planning (surgical / 3D) billed separately unless in retainer</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CTA Strip -->
+                <div
+                    style="background: var(--primary); color: white; padding: 2rem; border-radius: 12px; text-align: center; margin-top: 2rem;">
+                    <h3 style="color: white; margin-bottom: 0.5rem;">Want a visiting orthodontist who reduces failures
+                        instead of creating them?</h3>
+                    <a href="contact.html"
+                        style="display: inline-block; background: white; color: var(--primary); padding: 0.875rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; margin-top: 1rem;">Request
+                        Clinic Partnership Tiers</a>
+                </div>
+            </div>
+
+            <!-- CONSULTING SERVICES -->
+            <div class="category-section">
+                <div class="category-header">
+                    <span style="font-size:1.5rem;">🩺</span>
+                    <h2>Orthodontic Consulting (Remote)</h2>
+                    <span class="category-badge">Most Popular</span>
+                </div>
+                <div class="services-grid">
+
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h3>Quick Case Triage</h3>
+                        <div class="service-price">₹999</div>
+                        <div class="service-meta">
+                            <span>⏱️ 24 hours</span>
+                        </div>
+                        <p class="service-description">Is this case simple, risky, or referral-worthy? Get a quick
+                            assessment.</p>
+                        <ul class="service-includes">
+                            <li>Short diagnosis summary</li>
+                            <li>Red flags identification</li>
+                            <li>Recommended treatment path</li>
+                            <li>1 follow-up message</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Get Started</a>
+                    </div>
+
+                    <div class="service-card featured">
+                        <div class="service-icon">🔍</div>
+                        <h3>Second Opinion Report</h3>
+                        <div class="service-price">₹2,499</div>
+                        <div class="service-meta">
+                            <span>⏱️ 48 hours</span>
+                        </div>
+                        <p class="service-description">Complete clarity for patient or clinician on diagnosis and
+                            options.</p>
+                        <ul class="service-includes">
+                            <li>Comprehensive diagnosis</li>
+                            <li>2–3 treatment options</li>
+                            <li>Pros/cons analysis</li>
+                            <li>Risk assessment</li>
+                            <li>Expected timeline</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Get Started</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🚨</div>
+                        <h3>Stuck Case Rescue Plan</h3>
+                        <div class="service-price">₹4,999</div>
+                        <div class="service-meta">
+                            <span>⏱️ 48-72 hours</span>
+                        </div>
+                        <p class="service-description">Treatment not progressing? Repeated breakages? Poor tracking?
+                            Let's fix it.</p>
+                        <ul class="service-includes">
+                            <li>Root-cause analysis</li>
+                            <li>Step-by-step correction plan (8-12 weeks)</li>
+                            <li>1 revision after new photos</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Get Started</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">📋</div>
+                        <h3>Complete Treatment Plan</h3>
+                        <div class="service-price">₹7,999</div>
+                        <div class="service-meta">
+                            <span>⏱️ 5 working days</span>
+                        </div>
+                        <p class="service-description">Full treatment plan for fixed appliance or functional therapy
+                            cases.</p>
+                        <ul class="service-includes">
+                            <li>Complete mechanics roadmap</li>
+                            <li>Wire sequence planning</li>
+                            <li>Anchorage strategy</li>
+                            <li>Finishing checklist</li>
+                            <li>2 photo-based check-ins</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Get Started</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">📞</div>
+                        <h3>Live Case Discussion Call</h3>
+                        <div class="service-price">₹3,500 <span>/ 45 min</span></div>
+                        <div class="service-meta">
+                            <span>⏱️ Flexible scheduling</span>
+                        </div>
+                        <p class="service-description">Real-time chairside decision-making and confidence building.</p>
+                        <ul class="service-includes">
+                            <li>45-minute video call</li>
+                            <li>Written summary plan</li>
+                            <li>Delivered within 12 hours</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Book Call</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SURGICAL ORTHODONTICS -->
+            <div class="category-section">
+                <div class="category-header">
+                    <span style="font-size:1.5rem;">🏥</span>
+                    <h2>Surgical Orthodontics</h2>
+                    <span class="category-badge">Premium</span>
+                </div>
+                <div class="services-grid">
+
+                    <div class="service-card featured">
+                        <div class="service-icon">🔬</div>
+                        <h3>Surgical Case Workup</h3>
+                        <div class="service-price">₹14,999</div>
+                        <div class="service-meta">
+                            <span>⏱️ 5-7 working days</span>
+                        </div>
+                        <p class="service-description">Complete ortho-surgery planning for orthognathic cases.</p>
+                        <ul class="service-includes">
+                            <li>Decompensation plan</li>
+                            <li>Surgical objectives</li>
+                            <li>Treatment sequencing</li>
+                            <li>Risk assessment</li>
+                            <li>Patient explanation points</li>
+                            <li>30-min surgeon coordination call</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Get Started</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3>Surgical Planning + 3D Visual Pack</h3>
+                        <div class="service-price">₹24,999</div>
+                        <div class="service-meta">
+                            <span>⏱️ 7-10 working days</span>
+                        </div>
+                        <p class="service-description">Premium package with CBCT-based visuals for patient consent.</p>
+                        <ul class="service-includes">
+                            <li>Everything in Surgical Workup</li>
+                            <li>CBCT-based 3D visuals</li>
+                            <li>Movement summary (A-P, vertical, yaw/roll/pitch)</li>
+                            <li>Patient-ready consent materials</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Get Started</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- DIGITAL SERVICES -->
+            <div class="category-section">
+                <div class="category-header">
+                    <span style="font-size:1.5rem;">💻</span>
+                    <h2>Digital Workflow Services</h2>
+                </div>
+                <div class="services-grid">
+
+                    <div class="service-card">
+                        <div class="service-icon">🦴</div>
+                        <h3>CBCT Segmentation + STL Export</h3>
+                        <div class="service-price">₹6,999 <span>single region</span></div>
+                        <div class="service-meta">
+                            <span>⏱️ 3-5 working days</span>
+                        </div>
+                        <p class="service-description">Professional 3D models from your CBCT data.</p>
+                        <ul class="service-includes">
+                            <li>Choose: Mandible/Maxilla/TMJ/Airway</li>
+                            <li>STL files for printing/planning</li>
+                            <li>Labeled screenshots</li>
+                            <li>1-page summary report</li>
+                        </ul>
+                        <p style="color:var(--primary);font-weight:600;font-size:0.875rem;">Multi-region bundle: ₹11,999
+                        </p>
+                        <a href="contact.html" class="service-cta">Get Started</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <h3>Superimposition + Color Mapping</h3>
+                        <div class="service-price">₹7,999</div>
+                        <div class="service-meta">
+                            <span>⏱️ 5 working days</span>
+                        </div>
+                        <p class="service-description">Pre-post comparison with visual impact.</p>
+                        <ul class="service-includes">
+                            <li>Pre–post comparison</li>
+                            <li>Asymmetry mapping</li>
+                            <li>Condylar change analysis</li>
+                            <li>Clinical interpretation notes</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Get Started</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🖥️</div>
+                        <h3>3D Treatment Planning Support</h3>
+                        <div class="service-price">₹12,999</div>
+                        <div class="service-meta">
+                            <span>⏱️ 7 working days</span>
+                        </div>
+                        <p class="service-description">Goal-based digital planning with simulated movements.</p>
+                        <ul class="service-includes">
+                            <li>Treatment goal visualization</li>
+                            <li>Simulated movement visuals</li>
+                            <li>Execution notes</li>
+                            <li>Patient explanation materials</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Get Started</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ALIGNER SUPPORT -->
+            <div class="category-section">
+                <div class="category-header">
+                    <span style="font-size:1.5rem;">😁</span>
+                    <h2>Aligner Support</h2>
+                </div>
+                <div class="services-grid">
+
+                    <div class="service-card">
+                        <div class="service-icon">📐</div>
+                        <h3>Aligner Plan Review (Setup Critique)</h3>
+                        <div class="service-price">₹3,999</div>
+                        <div class="service-meta">
+                            <span>⏱️ 72 hours</span>
+                        </div>
+                        <p class="service-description">Expert review of your aligner setup before manufacturing.</p>
+                        <ul class="service-includes">
+                            <li>Staging critique</li>
+                            <li>Attachment recommendations</li>
+                            <li>Overcorrection suggestions</li>
+                            <li>Tracking risk points</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Get Started</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🔄</div>
+                        <h3>Mid-Course Correction Strategy</h3>
+                        <div class="service-price">₹5,999</div>
+                        <div class="service-meta">
+                            <span>⏱️ 72 hours</span>
+                        </div>
+                        <p class="service-description">Refinement strategy when aligners aren't tracking.</p>
+                        <ul class="service-includes">
+                            <li>Root-cause analysis</li>
+                            <li>What to change next</li>
+                            <li>IPR plan (if needed)</li>
+                            <li>Monitoring checkpoints</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Get Started</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- FINISHING -->
+            <div class="category-section">
+                <div class="category-header">
+                    <span style="font-size:1.5rem;">✨</span>
+                    <h2>Finishing & Detailing</h2>
+                </div>
+                <div class="services-grid">
+
+                    <div class="service-card">
+                        <div class="service-icon">✅</div>
+                        <h3>Finishing & Detailing Sprint</h3>
+                        <div class="service-price">₹3,999</div>
+                        <div class="service-meta">
+                            <span>⏱️ 48 hours</span>
+                        </div>
+                        <p class="service-description">Reduce chair time, fewer debonds, faster finishes.</p>
+                        <ul class="service-includes">
+                            <li>4-6 week finishing checklist</li>
+                            <li>Priority corrections</li>
+                            <li>Elastics/torque notes</li>
+                            <li>Midline, rotations, marginal ridges</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Get Started</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ADD-ONS -->
+            <div class="category-section">
+                <div class="category-header">
+                    <span style="font-size:1.5rem;">➕</span>
+                    <h2>Add-ons & Upgrades</h2>
+                </div>
+                <div class="addons-grid">
+                    <div class="addon-card">
+                        <h4>⚡ Urgent Delivery (24h)</h4>
+                        <p class="addon-price">+50% of service fee</p>
+                    </div>
+                    <div class="addon-card">
+                        <h4>🔄 Extra Revision</h4>
+                        <p class="addon-price">₹1,499 per revision</p>
+                    </div>
+                    <div class="addon-card">
+                        <h4>📄 Patient-Friendly PDF</h4>
+                        <p class="addon-price">₹999 (shareable explanation)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLINIC RETAINERS -->
+            <div class="category-section">
+                <div class="category-header">
+                    <span style="font-size:1.5rem;">🏢</span>
+                    <h2>Clinic Monthly Retainers</h2>
+                    <span class="category-badge">Best Value</span>
+                </div>
+                <div class="services-grid">
+
+                    <div class="service-card">
+                        <div class="service-icon">📦</div>
+                        <h3>Starter Package</h3>
+                        <div class="service-price">₹24,999 <span>/ month</span></div>
+                        <p class="service-description">Perfect for growing clinics with moderate caseload.</p>
+                        <ul class="service-includes">
+                            <li>Up to 8 cases per month</li>
+                            <li>Priority turnaround</li>
+                            <li>Dedicated support</li>
+                            <li>Monthly strategy call</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Contact for Details</a>
+                    </div>
+
+                    <div class="service-card featured">
+                        <div class="service-icon">🚀</div>
+                        <h3>Growth Package</h3>
+                        <div class="service-price">₹49,999 <span>/ month</span></div>
+                        <p class="service-description">For high-volume clinics needing consistent support.</p>
+                        <ul class="service-includes">
+                            <li>Up to 20 cases per month</li>
+                            <li>48-hour turnaround guarantee</li>
+                            <li>Dedicated WhatsApp support</li>
+                            <li>Bi-weekly strategy calls</li>
+                            <li>Staff training session (1/quarter)</li>
+                        </ul>
+                        <a href="contact.html" class="service-cta">Contact for Details</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TERMS -->
+            <div class="terms-section">
+                <h3>📋 Important Information</h3>
+                <div class="terms-grid">
+                    <div class="term-item">
+                        <div class="term-icon">📁</div>
+                        <div>
+                            <strong>Complete Records Required</strong>
+                            <p>Intraoral photos, OPG, lateral cephalogram, current wires, timeline. Incomplete records =
+                                limited opinion.</p>
+                        </div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-icon">⚖️</div>
+                        <div>
+                            <strong>Planning Only</strong>
+                            <p>Fees cover planning and reporting—not medico-legal responsibility for execution.</p>
+                        </div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-icon">🔒</div>
+                        <div>
+                            <strong>Privacy</strong>
+                            <p>Patient identity must be anonymized by the clinic before submission.</p>
+                        </div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-icon">💳</div>
+                        <div>
+                            <strong>Payment</strong>
+                            <p>Full payment required before work begins. UPI, Bank Transfer accepted.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA BANNER -->
+            <div class="cta-banner">
+                <h2>Ready to Get Started?</h2>
+                <p>Send your case details and I'll respond with a customized quote within 24 hours.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/919818643130" target="_blank" class="cta-btn-white">💬 WhatsApp Now</a>
+                    <a href="mailto:dr.jas.official@gmail.com" class="cta-btn-outline">📧 Email Me</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo logo">
+                    <div class="logo-icon">JS</div><span>Dr. Jaspreet Singh</span>
+                </div>
+                <p class="footer-text">MDS Orthodontics | PGIMER, Chandigarh | Ex-AIIMS, New Delhi</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dr. Jaspreet Singh. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/protection.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
