@@ -1,0 +1,47 @@
+/* Split Thumbnail Styling */
+.split-thumbnail {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.split-thumbnail img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.split-thumbnail .split-partition {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 2;
+}
+
+.split-label {
+    position: absolute;
+    bottom: 0.5rem;
+    padding: 0.15rem 0.5rem;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    z-index: 3;
+    backdrop-filter: blur(2px);
+}
+
+.split-label.before {
+    left: 0.5rem;
+}
+
+.split-label.after {
+    right: 0.5rem;
+    background: var(--success);
+    /* Green for after */
+}
