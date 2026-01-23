@@ -132,7 +132,51 @@
         });
     });
 
-    // ========== Image Lazy Loading ==========
+    // ========== WebP Support Detection ==========
+    function supportsWebP() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1;
+        canvas.height = 1;
+        return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+    }
+
+    const webpSupported = supportsWebP();
+
+    // Convert JPG URL to WebP if supported
+    function getOptimizedUrl(url) {
+        if (webpSupported && url && url.endsWith('.jpg')) {
+            return url.replace('.jpg', '.webp');
+        }
+        return url;
+    }
+
+    // ========== Auto-Convert Existing Background Images to WebP ==========
+    function optimizeBackgroundImages() {
+        if (!webpSupported) return;
+
+        const protectedImages = document.querySelectorAll('.protected-image');
+        protectedImages.forEach(function (img) {
+            const style = img.getAttribute('style');
+            if (style && style.includes('.jpg')) {
+                const newStyle = style.replace(/\.jpg/g, '.webp');
+                img.setAttribute('style', newStyle);
+            }
+        });
+
+        // Also optimize regular img tags
+        const imgTags = document.querySelectorAll('img[src$=".jpg"]');
+        imgTags.forEach(function (img) {
+            const webpSrc = img.src.replace('.jpg', '.webp');
+            // Test if WebP exists, fallback to JPG if not
+            const testImg = new Image();
+            testImg.onload = function () {
+                img.src = webpSrc;
+            };
+            testImg.src = webpSrc;
+        });
+    }
+
+    // ========== Image Lazy Loading with WebP Support ==========
     function lazyLoadImages() {
         const lazyImages = document.querySelectorAll('.lazy-image');
 
@@ -141,8 +185,9 @@
                 entries.forEach(function (entry) {
                     if (entry.isIntersecting) {
                         const img = entry.target;
-                        const src = img.dataset.src;
+                        let src = img.dataset.src;
                         if (src) {
+                            src = getOptimizedUrl(src);
                             img.style.backgroundImage = 'url(' + src + ')';
                             img.classList.remove('lazy-image');
                             img.classList.add('loaded');
@@ -158,8 +203,9 @@
         } else {
             // Fallback for older browsers
             lazyImages.forEach(function (img) {
-                const src = img.dataset.src;
+                let src = img.dataset.src;
                 if (src) {
+                    src = getOptimizedUrl(src);
                     img.style.backgroundImage = 'url(' + src + ')';
                 }
             });
@@ -170,6 +216,7 @@
     function init() {
         setActiveNavLink();
         animateOnScroll();
+        optimizeBackgroundImages(); // Auto-convert to WebP
         lazyLoadImages();
     }
 
