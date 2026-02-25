@@ -41,9 +41,9 @@ ortho-showcase/
 │   ├── images/
 │   │   ├── cases/
 │   │   │   ├── case-001/   ← Photos for case 1
-│   │   │   │   ├── extraoral-frontal-pre.jpg
-│   │   │   │   ├── extraoral-frontal-post.jpg
-│   │   │   │   ├── intraoral-upper-pre.jpg
+│   │   │   │   ├── extraoral-frontal-pre.webp
+│   │   │   │   ├── extraoral-frontal-post.webp
+│   │   │   │   ├── intraoral-upper-pre.webp
 │   │   │   │   └── ...
 │   │   │   └── case-002/   ← Photos for case 2
 │   │   └── profile/        ← Your profile photo
@@ -69,18 +69,18 @@ ortho-showcase/
 
 Use this naming pattern for consistency:
 ```
-[view]-[stage].jpg
+[view]-[stage].webp
 
 Examples:
-extraoral-frontal-pre.jpg
-extraoral-frontal-post.jpg
-extraoral-profile-pre.jpg
-extraoral-smile-post.jpg
-intraoral-upper-pre.jpg
-intraoral-lower-post.jpg
-intraoral-right-pre.jpg
-opg-pre.jpg
-ceph-post.jpg
+extraoral-frontal-pre.webp
+extraoral-frontal-post.webp
+extraoral-profile-pre.webp
+extraoral-smile-post.webp
+intraoral-upper-pre.webp
+intraoral-lower-post.webp
+intraoral-right-pre.webp
+opg-pre.webp
+ceph-post.webp
 ```
 
 ---
@@ -129,7 +129,7 @@ Find the image placeholders and replace with your images:
 
 **After (your image):**
 ```html
-<div class="protected-image" style="background-image:url('assets/images/cases/case-003/extraoral-frontal-pre.jpg');"></div>
+<div class="protected-image" style="background-image:url('assets/images/cases/case-003/extraoral-frontal-pre.webp');"></div>
 ```
 
 ### Step 4: Add to Case Gallery
@@ -140,7 +140,7 @@ Open `cases.html` and add a new case card:
 <article class="case-card">
   <a href="case-003.html">
     <div class="case-image-container">
-      <div class="protected-image" style="background-image:url('assets/images/cases/case-003/thumbnail.jpg');height:200px;"></div>
+      <div class="protected-image" style="background-image:url('assets/images/cases/case-003/thumbnail.webp');height:200px;"></div>
       <div class="image-overlay"></div>
       <span class="case-badge">Class II</span>
     </div>

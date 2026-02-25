@@ -144,8 +144,8 @@
 
     // Convert JPG URL to WebP if supported
     function getOptimizedUrl(url) {
-        if (webpSupported && url && url.endsWith('.jpg')) {
-            return url.replace('.jpg', '.webp');
+        if (webpSupported && url && url.endsWith('.webp')) {
+            return url.replace('.webp', '.webp');
         }
         return url;
     }
@@ -157,16 +157,16 @@
         const protectedImages = document.querySelectorAll('.protected-image');
         protectedImages.forEach(function (img) {
             const style = img.getAttribute('style');
-            if (style && style.includes('.jpg')) {
-                const newStyle = style.replace(/\.jpg/g, '.webp');
+            if (style && style.includes('.webp')) {
+                const newStyle = style.replace(/\.webp/g, '.webp');
                 img.setAttribute('style', newStyle);
             }
         });
 
         // Also optimize regular img tags
-        const imgTags = document.querySelectorAll('img[src$=".jpg"]');
+        const imgTags = document.querySelectorAll('img[src$=".webp"]');
         imgTags.forEach(function (img) {
-            const webpSrc = img.src.replace('.jpg', '.webp');
+            const webpSrc = img.src.replace('.webp', '.webp');
             // Test if WebP exists, fallback to JPG if not
             const testImg = new Image();
             testImg.onload = function () {
